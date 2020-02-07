@@ -1,0 +1,8 @@
+Midpoint A fails when the y value is a negative and the x is of a positive value.
+Midpoint A overflows from this occurence because it's subtracting the values in a 8-bit format. And because of the way 2-complement subtraction works it causes the byte to overflow and cause the Midpoint for Midpoint A to not align.
+
+
+Midpoint B fails when one or both numbers are negative values
+The reason for this is because Midpoint B evaluated (unsigned int)s.
+Unsigned ints can only evaluate positive values. Therefore it will convert the negative number
+into a positive one.
