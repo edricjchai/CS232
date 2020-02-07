@@ -26,19 +26,20 @@ void conditionmixer() {
 	int i = 6;
 	char ch = 'm';
 	
-	printf("3==4 = %d\n", 3==4);
-	printf("3==3 = %d\n", 3==3);
-	printf("!0 = %d\n", !0);
-	printf("!(-1) = %d\n", !(-1));
-	printf("!\"abc\" =%d\n", !"abc");
-	printf("2.0f == 2.0 is %d\n", (2.0f == 2.0));
-	printf("1.1f == 1.1 is %d\n", (1.1f == 1.1));
+	//0 = false, 1 = true
+	printf("3==4 = %d\n", 3==4); //output: 0
+	printf("3==3 = %d\n", 3==3); //output: 1
+	printf("!0 = %d\n", !0); //output: 1, 0 is false then being negated making it true
+	printf("!(-1) = %d\n", !(-1)); //output: 0, -1 is true then being negated making it false
+	printf("!\"abc\" =%d\n", !"abc"); //output: 0
+	printf("2.0f == 2.0 is %d\n", (2.0f == 2.0)); //output: 1, 2.0 can be stored a binary
+	printf("1.1f == 1.1 is %d\n", (1.1f == 1.1)); //output: 0, 1.1 cannot be stored in binary
 
-        printf("%d\n", ch < 'z' && ch > 'a');
-	printf("%d\n", !(ch-'z')?1:0);
-	printf("%d\n", 2 * 3 == 6 || (i = i + 1));
+        printf("%d\n", ch < 'z' && ch > 'a'); //output: 1
+	printf("%d\n", !(ch-'z')?1:0); //output: 0
+	printf("%d\n", 2 * 3 == 6 || (i = i + 1)); //output: 1, second operand is not evaluated
         printf("%d\n", i);
-	printf("%d\n", 2 * 3 == 6 && (i = i + 1));
+	printf("%d\n", 2 * 3 == 6 && (i = i + 1)); //output: 0
         printf("%d\n", i);
 }
 
@@ -60,7 +61,7 @@ void typemixer() {
 	// ---------------------------------------------------------------------
 	// an integer plus a character
 
-	printf("a+j=%d\n", a+j);
+	printf("a+j=%d\n", a+j); 
 	// ---------------------------------------------------------------------
 	// a character plus an integer
 		
