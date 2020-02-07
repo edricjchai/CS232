@@ -17,8 +17,10 @@ int midpoint_C(int x, int y) {
 }
 
 int main(int argc, char ** argv) {
-    int a = atoi(argv[1]); //atoi converts string to int
-    int b = atoi(argv[2]);
+    //int a = atoi(argv[1]); //atoi converts string to int
+    //int b = atoi(argv[2]);
+    int a = 61;
+    int b = 90;
     printf("midpoint_original = %d\n", midpoint_original(a, b));
     printf("midpoint_A = %d\n", midpoint_A(a, b));
     printf("midpoint_B = %d\n", midpoint_B(a, b));    
