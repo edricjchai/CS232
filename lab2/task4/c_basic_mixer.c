@@ -51,9 +51,9 @@ void typemixer() {
 	// ---------------------------------------------------------------------
 	// The variables were already assigned values.  Let's check them out.
 	// ---------------------------------------------------------------------
-	printf ("i = %d \tj=%d \t\t k=%d\n", i, j, k);		
-	printf ("a = %c \tB=%c \t\t dollarSign=%c\n", a, B, dollarSign);		
-        printf ("x = %f \ty=%f \t\t z=%e\n", x, y, z);		
+	printf ("i = %d \tj=%d \t\t k=%d\n", i, j, k);	//prints assigned integer i,j,k	
+	printf ("a = %c \tB=%c \t\t dollarSign=%c\n", a, B, dollarSign); //prints assigned chars a,b, dollarSign	
+        printf ("x = %f \ty=%f \t\t z=%e\n", x, y, z);		//prints assigned floats x, y, z
 	// ---------------------------------------------------------------------		
 	// And now the fun stuff ....
 	// ---------------------------------------------------------------------
@@ -61,15 +61,15 @@ void typemixer() {
 	// ---------------------------------------------------------------------
 	// an integer plus a character
 
-	printf("a+j=%d\n", a+j); 
+	printf("a+j=%d\n", a+j); //prints a+j=107
 	// ---------------------------------------------------------------------
 	// a character plus an integer
 		
-        printf("k+B=%d\n", k+B);
+        printf("k+B=%d\n", k+B); //prints k+B=86
 	// ---------------------------------------------------------------------
 	// mixing floats and characters
 		
-	printf("x/dollarSign = %f\n", x/dollarSign);
+	printf("x/dollarSign = %f\n", x/dollarSign); //prints x/dollarSign = 0.061111
 	// ---------------------------------------------------------------------
 	// we can declare new objects at any time!
 		
@@ -79,8 +79,8 @@ void typemixer() {
 	// ---------------------------------------------------------------------
 	// huh? What's going on here?
 		
-	printf("a+j=%c\n", newChar);
-	printf("B-6=%d\n", B-6);
+	printf("a+j=%c\n", newChar); //prints a+j=k
+	printf("B-6=%d\n", B-6); //prints B-6=60
 
 }
 int main( void )
