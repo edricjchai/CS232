@@ -6,3 +6,8 @@ Midpoint B fails when one or both numbers are negative values
 The reason for this is because Midpoint B evaluated (unsigned int)s.
 Unsigned ints can only evaluate positive values. Therefore it will convert the negative number
 into a positive one.
+
+
+To find the errors within A and B I first checked for whether any of these methods worked with negative values in both inputs. That is how I found Midpoint B's error.
+
+Afterwards I checked for negative values in one input for both A and B separately. I discovered whena negative value is in A and a positive value in B, Midpoint A overflows.
