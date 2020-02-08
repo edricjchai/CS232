@@ -1,18 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Note, the bits are counted from right to left. 
+// Note, the bits are counted from right to left.
 // Return the bit states of x within range of [start, end], in which both are inclusive.
 // Assume 0 <= start & end <= 31
 unsigned * get_bits(unsigned x,
                  unsigned start,
                  unsigned end) {
-    
-   return NULL;
+    unsigned *ptr = (unsigned*) calloc(end - start + 1,sizeof(unsigned));
+    for(int i = 0;i < end - start + 1;i++){
+    if(((x >> (i + start)) & (unsigned)1) == 1){
+        ptr[i] = 1;
+    }
+}
+return ptr;
     // YOUR CODE HERE
     // Returning NULL is a placeholder
     // get_bits dynamically allocates an array a and set a[i] = 1 when i-th bit
-    // of x is 1, otherwise siet a[i] = 0;
+    // of x is 1, otherwise set a[i] = 0;
     // At last, get_bits returns the address of the array.
 }
 
@@ -22,6 +27,15 @@ void set_bits(unsigned * x,
              unsigned start,
              unsigned end,
              unsigned *v) {
+    for(unsigned i = start; i <= end; i++){
+        unsigned mask = (unsigned) 1 << i;
+        if(v[i - start] == 1){
+            *x |= mask;
+        }
+        else{
+            *x &= ~mask;
+        }
+    }
     // YOUR CODE HERE
     // No return value
     // v points to an array of at least (end-start+1) unsigned integers.
@@ -33,6 +47,10 @@ void set_bits(unsigned * x,
 void flip_bits(unsigned * x,
               unsigned start,
               unsigned end) {
+
+    for(int i = start;i <= end;i++){
+            *x ^= (1 << i);
+        }
     // YOUR CODE HERE
 }
 
