@@ -1,20 +1,21 @@
 #include <stdio.h>
+#include <string.h>
 
+void uppercase(char *uc){
+    *uc = *uc - 'a' + 'A';
+}
 int main(int argc, char *argv[]) {
 
-   char str[100];
-   int ch, n = 0;
+    char str[100];
 
-   while ((ch = getchar()) != EOF && n < 1000) {
-      str[n] = ch;
-      ++n;
-   }
+    printf("Enter a string\n");
+    scanf("%99s", str);
 
-   for (int i = 0; i < n; ++i)
-      putchar(str[i]);
-
-
-
+    for(int i = 0; i < strlen(str); i++){
+        if((str[i] >= 'a') && (str[i] <= 'z'))
+            uppercase(&str[i]);
+    }
+    printf("%s\n", str);
     return 0;
 }
 
