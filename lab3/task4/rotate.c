@@ -3,6 +3,11 @@
 
 void rotate_4(int *p_a, int*p_b, int*p_c, int* p_d) {
     //TO-DO: please implement left rotate 4 integers by one position
+    int temp = *p_a;
+    *p_a = *p_d;
+    *p_d = *p_c;
+    *p_c = *p_b;
+    *p_b = temp;
 }
 
 int main(int argc, char ** argv) {
