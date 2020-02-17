@@ -55,11 +55,12 @@ int main(void)
 	// Such code represents a block, which may have its own local variables.
 
 	int n = 7;
-	printf("main : m=%d, n=%d\n", m, n);
-	U(n);
-	printf("main : m=%d, n=%d\n", m, n);
-	A();
-	printf("main : m=%d, n=%d\n\n\n", m, n);
+	printf("main : m=%d, n=%d\n", m, n);    //m=1, n=7
+	U(n); //m = 7, n = 7
+	printf("main : m=%d, n=%d\n", m, n); //m=7, n=7
+	A(); //global m=5
+         //A: m=3
+	printf("main : m=%d, n=%d\n\n\n", m, n); //main : m=5, n=7
 
 	// -------------------------------------------------
 	// Below is a block, which may declare its own local
@@ -72,9 +73,9 @@ int main(void)
 		// -------------------------------------------------
 		int n = 100;
 
-		printf("block : m=%d, n=%d\n", m, n);
-		U(n);
-		printf("block : m=%d, n=%d\n", m, n);
+		printf("block : m=%d, n=%d\n", m, n); //block : m=5. n=100
+		U(n); //U: m=100, n=100
+		printf("block : m=%d, n=%d\n", m, n); //block: m=100, n=100
 		// -------------------------------------------------
 		// A local variable m is now declared.
 		// References to m from here to the end of the
@@ -82,15 +83,15 @@ int main(void)
 		// -------------------------------------------------
 		int m = -40;
 
-		printf("block : m=%d, n=%d\n", m, n);
-		val(m);
-		printf("block : m=%d\n", m);
-		addr(&m);
-		printf("block : m=%d\n", m);
+		printf("block : m=%d, n=%d\n", m, n); //block : m=-40, n=100
+		val(m); //val : x=-40
+		printf("block : m=%d\n", m); //block : m=-40
+		addr(&m); //ref : *x=-40
+		printf("block : m=%d\n", m); //block : m=5
 
 	}
-
-	printf("main : m=%d, n=%d\n\n\n", m, n);
+    //outside internal block, using new variables
+	printf("main : m=%d, n=%d\n\n\n", m, n); //main : m=5, n=7
 	//
 	// ---------------------------------------------------------------------
 	return 0;
@@ -105,33 +106,33 @@ int main(void)
 
 void U(int n)
 {
-	m = n;
-	printf("   U: m=%d, n=%d\n", m, n);
+	m = n; //assigns m with n's variable
+	printf("   U: m=%d, n=%d\n", m, n); //U: m = m, n = n
 }
 
 // ----------------------------------------------------------------------------
 //
 void A(void)
 {
-	int m = 3;
+	int m = 3; //local m = 3
        {
 		extern int m;
-		m = 5; 
-		printf("  global m=%d\n",  m);
+		m = 5; //assigns m with 5 'globally'
+		printf("  global m=%d\n",  m); //global m=5
 	}
-	printf("   A: m=%d\n", m);
+	printf("   A: m=%d\n", m); //A: m=3
 }
 // ----------------------------------------------------------------------------
 
 void val(int x)
 {
-	printf("val  : x=%d\n", x);
-	x = 5;
+	printf("val  : x=%d\n", x); //val : x=(x value)
+	x = 5; //assigns x with 5
 }
 // ----------------------------------------------------------------------------
 // -------------can't help testing your pass-by-pointers -Jun -----------------
 void addr(int *x)
 {
-	printf("ref  : *x=%d\n", *x);
-	*x = 5;
+	printf("ref  : *x=%d\n", *x); //ref : *x=(*x value)
+	*x = 5; //assigns *x with 5
 }
