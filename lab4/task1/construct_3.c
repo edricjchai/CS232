@@ -16,9 +16,9 @@ node_t * construct_3() {
     y = malloc(sizeof(node_t));
     z = malloc(sizeof(node_t));
     //Dereference each pointer to store the appropriate number into the value field in its pointee.
-    x->value = 1;
-    y->value = 2;
-    z->value = 3;
+    x->value = 2;
+    y->value = 3;
+    z->value = 1;
     //Dereference each pointer to access the .next field in its pointee,
     //and use pointer assignment to set the .next field to point to the appropriate Node.
     x->next = y;
