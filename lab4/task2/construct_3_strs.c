@@ -1,12 +1,29 @@
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct node {
-    char * value; //must use dynamic allocation 
+    char * value; //must use dynamic allocation
     struct node* next;
 } node_t;
 
 node_t * construct_3_strs() {
-    return NULL;//just to pass compiler, please edit as needed.
+    //code here
+    node_t * x;
+    node_t * first;
+    node_t * second;
+
+    x = malloc(sizeof(node_t));
+    first = malloc(sizeof(node_t));
+    second = malloc(sizeof(node_t));
+
+    x->value = "CS232";
+    first->value = "is";
+    second->value = "awesome";;
+
+    x->next = first;
+    first->next = second;
+    second->next = x;
+
+    first = x;
 }
 
 //You can ignore the following code for testing
