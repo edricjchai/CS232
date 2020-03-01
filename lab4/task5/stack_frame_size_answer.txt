@@ -1,0 +1,4 @@
+For the recursive function, each time it is called it should create a new stack frame for the variables. Therefore the recursive function
+has to be counted in number of stack frames. Each call also takes up memory so the size of the stack frames would be counted based on
+how much memory the computer running the code has. Also explaining why there is a segmentation fault, because the call is trying to pull
+memory where there is no memory left because it has been all taken up by the recursive call.
