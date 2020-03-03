@@ -1,28 +1,42 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #define MAX_BUF 1024
 
 int main () {
 
   /* Zero out the array */
-      int letter_frequency[26] = {0};
-      int len, i;
+      int len;
       char buf[MAX_BUF];
-
-      fgets(buf,MAX_BUF,stdin);
+      int ch, n = 0;
+      while((ch = getchar()) != EOF) {
+        buf[n] = ch;
+        ++n;
+      }
       len = strlen(buf);
 
-      do{
-            if (buf[len] >= 'A' && buf[len] <= 'Z')
-                letter_frequency[buf[len]-'A']++;
-            else if(buf[len] >= 'a' && buf[len] <= 'z')
-                letter_frequency[buf[len]-'a']++;
-            len--;
-      } while (len >= 0);
-
-      printf("Distribution of letters in corpus:\n");
-      for (i = 0; i < 26; i++) {
-        // 'A' is ASCII code 65
-        printf("%c: %d\n", 65+i, letter_frequency[i]);
+      int chara = 0, word = 0, line = 0, space = 0, upperc = 0, lowerc = 0, nums = 0;
+      for(int i = 0; i < len; i++){
+        if((buf[i] >= 'A' && buf[i] < 'Z') || (buf[i] >= 'a' && buf[i] < 'z')){
+            chara++;
+        }
+        if(buf[i] >= 'A' && buf[i] <= 'Z'){
+            upperc++;
+        }
+        if(buf[i] >= 'a' && buf[i] <= 'z'){
+            lowerc++;
+        }
+        if(buf[i] == 32){
+            space++;
+        }
+        if(buf[i] == 10){
+            line++;
+        }
+        word = space + line;
+        if(isdigit(buf[i])){
+            nums++;
+        }
       }
+
+      printf("%d %d %d %d %d %d %d\n", chara, word, line, space, upperc, lowerc, nums);
 }
