@@ -4,25 +4,102 @@
 typedef struct snode node_t;
 
 node_t * setup() {
-    //TODO:copy setup func from task2
+    //TODO:copy setup func from task1
+    node_t * head = malloc(sizeof(node_t));
+    //TODO:head declared for you
+    //Allocate three more pointers
+    //head for the first Node, and temporary pointers node1, node2 and node3
+    node_t * x = malloc(sizeof(node_t));
+    node_t * y = malloc(sizeof(node_t));
+    node_t * z = malloc(sizeof(node_t));
+    //Allocate three node pointees and store references to them in the three pointers
+    //Dereference each pointer to store the appropriate number and string into the length
+    strcpy(head->str, "");
+
+    x->length = 5;
+    strcpy(x->str, "hello");
+
+    y->length = 5;
+    strcpy(y->str, "there");
+
+    z->length = 4;
+    strcpy(z->str, "prof");
+    //Dereference each pointer to access the .next field in its pointee,
+    head->next = x;
+    x->next = y;
+    y->next = z;
+    z->next = NULL;
+    //and use pointer assignment to set the .next field to point to the appropriate Node.
+
+   return head;
 }
 
-void teardown(/*what parameter?*/) {
+void teardown(node_t* t) {
     //TODO: free all dynamic memory you requested.
     //Please complete the prototype of teardown.
     //You are not allowed to use globals
+    while(t!=NULL){
+        node_t* next = t->next;
+        free(t->str);
+        free(t);
+        t = next;
+    }
 }
 
 void add(node_t ** head, char * str, int length){
     //TODO: copy add func from task2
+    node_t * oldhead = *head;
+    *head = malloc(sizeof(node_t));
+    strcpy((*head)->str, str);
+    (*head)->length = length;
+    (*head)->next = oldhead;
 }
+
+void free_node(node_t * node) {
+    free(node->str);
+    free(node);
+}
+
 void delete_node_at(node_t ** head, int idx) {
     //TODO: implement delete a node based on index
 	//deletes a node at index idx, which ranges from zero to the length of the list - 1.
-} 
+	if(idx == 0){
+        node_t* temp = *head;
+        *head = temp->next;
+        free_node(temp);
+	} else {
+        for(node_t* current = *head;idx > 0; current = current->next, idx--){
+            if(idx == 1){
+                node_t * temp = current->next;
+                current->next = temp->next;
+                free_node(temp);
+            }
+        }
+	}
+}
 void delete_node_key(node_t **head, char * key) {
     //TODO: implement delete a node based on key
-	//given a certain key, find and delete. 
+	//given a certain key, find and delete.
+	node_t* current = *head;
+	node_t* previous = NULL;
+    for(; current != NULL;){
+        if(strcmp(current->str, key) == 0){
+            if(previous == NULL){
+                    *head = current->next;
+                    free_node(current);
+                    current = *head;
+            }
+            else{
+                previous->next = current->next;
+                free_node(current);
+                current = previous->next;
+            }
+        }
+        else{
+            previous = current;
+            current = current->next;
+        }
+    }
 }
 //You can ignore the following code for testing
 void dump_all(node_t*);
@@ -32,7 +109,7 @@ int main (int argc, char ** argv) {
     delete_node_key(&head, "prof");
     delete_node_at(&head, 0);
     dump_all(head);
-    teardown(/*what argument?*/);
+    teardown(head);
     return 0;
 }
 
